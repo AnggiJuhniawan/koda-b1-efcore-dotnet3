@@ -11,6 +11,7 @@ public sealed class Product
     public int Stock { get; private set; }
     public string Category { get; private set; }
     public string? Description { get; private set; }
+    public ICollection<OrderItem> OrderItems { get; private set; } = new List<OrderItem>();
 
     public Product(string productCode, string name, decimal price, int stock, string category, string? description = null)
     {
