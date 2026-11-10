@@ -26,8 +26,8 @@ public static class OrderSeedData
     {
         if (await context.Set<Order>().AnyAsync(o => o.OrderNumber == DemoOrderNumber, ct)) return;
 
-        var keyboard = await context.Set<Product>().SingleAsync(p => p.ProductCode == "P001", ct);
-        var mouse = await context.Set<Product>().SingleAsync(p => p.ProductCode == "P002", ct);
+        var keyboard = await context.Set<Product>().SingleAsync(p => p.ProductCode == "P002", ct);
+        var mouse = await context.Set<Product>().SingleAsync(p => p.ProductCode == "P003", ct);
 
         var order = new Order(DemoOrderNumber);
         order.AddItem(keyboard, 2);

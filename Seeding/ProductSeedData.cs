@@ -7,7 +7,7 @@ public static class ProductSeedData
 {
     private static IEnumerable<Product> InitialProducts()
     {
-        yield return new Product("P004", "Keyboard Mekanik", 35000m, 20, "Elektronik");
+        yield return new Product("P001", "Keyboard Mekanik", 35000m, 20, "Elektronik");
         yield return new Product("P002", "Mouse", 20000m, 20, "Mouse");
         yield return new Product("P003", "Monitori", 15000m, 20, "Screen");
 

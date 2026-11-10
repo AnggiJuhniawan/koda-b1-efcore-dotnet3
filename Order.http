@@ -1,0 +1,29 @@
+@baseUrl = http://localhost:5231
+
+### 1. List Order: Pagination
+Get {{baseUrl}}/api/v1/orders?page=1&pageSize=10
+Accept: application/json
+
+### 2. Detail Order: Include + ThenInclude
+GET {{baseUrl}}/api/v1/orders/66
+Accept: application/json
+
+### Buat Order Baru
+POST {{baseUrl}}/api/v1/orders
+Content-Type: application/json
+
+{
+    "orderNumber": "ORD-003",
+    "items": [
+        {"productCode": "P001", "quantity": 5},
+        {"productCode": "P002", "quantity": 10}
+    ]
+}
+
+### Konfirmasi order
+PATCH {{baseUrl}}/api/v1/orders/1/confirm
+Accept: application/json
+
+### Mengulangi konfirmasi order
+PATCH {{baseUrl}}/api/v1/orders/2/confirm
+Accept: application/json

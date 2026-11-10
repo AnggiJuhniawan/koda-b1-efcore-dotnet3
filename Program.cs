@@ -25,11 +25,15 @@ builder.Services.AddProblemDetails();
 
 // EFCORE REPOSITORY
 builder.Services.AddScoped<IProductRepository, EfProductRepository>();
-
+builder.Services.AddScoped<IOrderRepository, EfOrderRepository>();
 // Business/Application Service
 builder.Services.AddScoped<
     IProductService,
     ProductService>();
+builder.Services.AddScoped<
+    IOrderService,
+    OrderService>();
+
 
 // DBCONTEXT
 var connectionString = builder.Configuration.GetConnectionString("ecommercedb")
@@ -38,8 +42,17 @@ var connectionString = builder.Configuration.GetConnectionString("ecommercedb")
 builder.Services.AddDbContext<AppDbContext>(options =>
 {
     options.UseSqlServer(connectionString)
-        .UseSeeding((context, _) => ProductSeedData.Seed(context))
-        .UseAsyncSeeding((context, _, ct) => ProductSeedData.SeedAsync(context, ct));
+        .UseSeeding((context, _) =>
+        {
+            ProductSeedData.Seed(context);
+            OrderSeedData.Seed(context);
+        })
+        .UseAsyncSeeding(async (context, _, ct) =>
+        //    SeedAllAsync(context, ct)
+            {
+                await ProductSeedData.SeedAsync(context, ct);
+                await OrderSeedData.SeedAsync(context, ct);
+            });
 });
 
 var app = builder.Build();
@@ -65,3 +78,9 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
+
+// static async Task SeedAllAsync(DbContext context, CancellationToken ct)
+// {
+//     await ProductSeedData.SeedAsync(context, ct);
+//     await OrderSeedData.SeedAsync(context, ct);
+// }

@@ -76,7 +76,7 @@ public sealed class AppDbContext : DbContext
                 table.HasCheckConstraint("CK_OrderItem_UnitPrice", "[UnitPrice] >= 0");
             });
             entity.HasKey(i => i.OrderItemId);
-            entity.Property(i => i.OrderItemId).ValueGeneratedOnAdd();
+            entity.Property(i => i.OrderItemId).ValueGeneratedOnAdd().IsRequired();
             entity.Property(i => i.ProductCode).HasMaxLength(30).IsRequired();
             entity.Property(i => i.Quantity).IsRequired();
             entity.Property(i => i.UnitPrice).HasPrecision(18, 2).IsRequired();

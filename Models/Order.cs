@@ -30,4 +30,10 @@ public sealed class Order
 
         Items.Add(new OrderItem(product, quantity));
     }
+
+    public void Konfirmasi()
+    {
+        if (Status != "Pending") throw new InvalidOperationException("Hanya order Pending yang boleh dikonfirmasi");
+        Status = "Confirmed";
+    }
 }
