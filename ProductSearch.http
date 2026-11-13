@@ -1,0 +1,36 @@
+@baseUrl = http://localhost:5231
+
+### TEST 1 full
+GET {{baseUrl}}/api/v1/products/search
+Accept: application/json
+
+### Test 2 Text Awalan
+GET {{baseUrl}}/api/v1/products/search?search=key
+Accept: application/json
+
+### Test 3 - Category dan Harga
+GET {{baseUrl}}/api/v1/products/search?minPrice=20000
+Accept: application/json
+
+### Test 4 - ASC DESC
+GET {{baseUrl}}/api/v1/products/search?sort=stock_asc
+Accept: application/json
+
+### TEST 5 - Pagination
+GET {{baseUrl}}/api/v1/products/search?page=2&pageSize=10&sort=price_desc&maxPrice=400000
+Accept: application/json
+
+### TEST 5 - Pagination tidak valid
+GET {{baseUrl}}/api/v1/products/search?page=2&pageSize=1000
+Accept: application/json
+
+### TEST 6 - Sort tidak valid
+GET {{baseUrl}}/api/v1/products/search?sort=abcd
+Accept: application/json
+
+### TEST 7 - MIN MAX tidak valid
+GET {{baseUrl}}/api/v1/products/search?minPrice=400000&maxPrice=200000
+Accept: application/json
+
+
+

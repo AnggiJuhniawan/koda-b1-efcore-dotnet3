@@ -26,13 +26,17 @@ builder.Services.AddProblemDetails();
 // EFCORE REPOSITORY
 builder.Services.AddScoped<IProductRepository, EfProductRepository>();
 builder.Services.AddScoped<IOrderRepository, EfOrderRepository>();
+builder.Services.AddScoped<IProductQueryRepository, EfProductQueryRepository>();
 // Business/Application Service
 builder.Services.AddScoped<
     IProductService,
     ProductService>();
+
 builder.Services.AddScoped<
     IOrderService,
     OrderService>();
+
+builder.Services.AddScoped<IProductQueryService, ProductQueryService>();
 
 
 // DBCONTEXT
