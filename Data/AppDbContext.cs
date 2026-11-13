@@ -52,6 +52,13 @@ public sealed class AppDbContext : DbContext
             entity.Property(p => p.Description)
                 .HasMaxLength(500)
                 .IsRequired(false);
+
+            entity.HasIndex(p => new
+            {
+                p.Category,
+                p.Price,
+                p.Name
+            }).HasDatabaseName("IX_Product_Category_Price_Name");
         });
 
         // Order

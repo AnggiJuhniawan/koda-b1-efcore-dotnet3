@@ -125,6 +125,9 @@ namespace KodaStore.Api.Migrations
 
                     b.HasKey("ProductCode");
 
+                    b.HasIndex("Category", "Price", "Name")
+                        .HasDatabaseName("IX_Product_Category_Price_Name");
+
                     b.ToTable("Product", "dbo", t =>
                         {
                             t.HasCheckConstraint("CK_Product_Price", "[Price] >= 0");
