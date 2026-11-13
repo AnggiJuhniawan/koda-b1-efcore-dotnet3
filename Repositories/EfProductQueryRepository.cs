@@ -16,12 +16,17 @@ public sealed class EfProductQueryRepository(AppDbContext db) : IProductQueryRep
 
         if (criteria.Search is { Length: > 0 } keyword)
         {
-            query.Where(p => p.ProductCode.StartsWith(keyword) || p.Name.StartsWith(keyword));
+            query = query.Where(p => p.ProductCode.StartsWith(keyword) || p.Name.StartsWith(keyword));
         }
 
         if (criteria.Category is { Length: > 0 } category)
         {
             query = query.Where(p => p.Category == category);
+        }
+
+        if (criteria.MinPrice is decimal minPrice)
+        {
+            query = query.Where(p => p.Price >= minPrice);
         }
 
         if (criteria.MaxPrice is decimal maxPrice)
